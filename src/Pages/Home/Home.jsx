@@ -1,11 +1,16 @@
 import Navbar from "../../Components/Navbar";
+import Banner from "./Banner";
+import Footer from "./Footer";
+import UserTypesSection from "./UserTypesSection";
 
 
 const Home = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <h1 className="text-6xl ">This is Home</h1>
+            <Banner></Banner>
+            <UserTypesSection></UserTypesSection>
+            <Footer></Footer>
         </div>
     );
 };
