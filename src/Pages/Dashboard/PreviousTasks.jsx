@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Link} from "react-router-dom";
 
 function PreviousTasks() {
   const [tasks, loading, refetch] = useTasks();
@@ -11,6 +12,8 @@ function PreviousTasks() {
   const axiosPublic = useAxiosPublic()
 
 
+
+  
 const userEmail = user.email
 // console.log(userEmail);
 
@@ -114,6 +117,15 @@ const userEmail = user.email
                       >
                         {`Delete`}
                       </button>
+
+                      <Link
+                        className="bg-blue-300 text-center hover:bg-blue-700 text-black font-bold py-2 px-4 rounded"
+                        to={`taskDetails/${task._id}`}
+                      >
+                        <button>{`View`}</button>
+                      </Link>
+
+
 
                               </td>
                             </tr>

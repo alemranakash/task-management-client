@@ -10,6 +10,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
 import Profile from "../Pages/Dashboard/Profile";
+import TaskDetails from "../Pages/Dashboard/TaskDetails";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
               {
                 path: "previousTasks",
                 element: <PreviousTasks></PreviousTasks>
+              },
+              {
+                path: "previousTasks/taskDetails/:id",
+                element: <PrivateRoutes><TaskDetails></TaskDetails></PrivateRoutes>
               },
             ]
           },
