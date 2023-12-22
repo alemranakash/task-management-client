@@ -9,6 +9,7 @@ import PreviousTasks from "../Pages/Dashboard/PreviousTasks";
 import PrivateRoutes from "./PrivateRoutes";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
+import Profile from "../Pages/Dashboard/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             path: "/dashboard",
             element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
             children:[
+              {
+                path: "profile",
+                element: <Profile></Profile>
+              },
               {
                 path: "newTask",
                 element: <CreateNewTask></CreateNewTask>

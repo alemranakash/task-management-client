@@ -68,9 +68,12 @@
 import { useState } from 'react';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import swal from 'sweetalert';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const CreateNewTask = () => {
     const axiosPublic = useAxiosPublic()
+    const { user } = useContext(AuthContext)
 
   const [task, setTask] = useState({
     title: '',
@@ -94,10 +97,10 @@ const CreateNewTask = () => {
     const deadline = task.deadline
     const priority = task.priority
     const status= 'to-do'
+    const requesterEmail= user.email
 
     const taskData= {
-        title, description, deadline, priority, status
-    }
+        title, description, deadline, priority, status, requesterEmail    }
 
     console.log(taskData);
 

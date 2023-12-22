@@ -1,9 +1,12 @@
 // AboutUs.js
-import React from 'react';
+
+import Navbar from '../Components/Navbar';
 
 const AboutUs = () => {
   return (
-    <section className="py-16 mt-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+    <div>
+        <Navbar></Navbar>
+        <section className="py-16 mt-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white">
       <div className="container mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">About Us</h2>
         <p className="text-lg mb-8 text-gray-300">
@@ -45,6 +48,7 @@ const AboutUs = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

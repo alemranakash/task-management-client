@@ -1,14 +1,18 @@
-
-
-
-
-
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import useTasks from "../../Hooks/useTasks";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 function PreviousTasks() {
-  const [tasks, loading] = useTasks();
+  const [tasks, loading, refetch] = useTasks();
+  const { user } = useContext(AuthContext)
+  const axiosPublic = useAxiosPublic()
 
+
+const userEmail = user.email
+// console.log(userEmail);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -17,7 +21,39 @@ function PreviousTasks() {
 
 
   const renderTable = (status) => {
-    const filteredTasks = tasks.filter((task) => task.status === status);
+    // const filteredTasks = tasks.filter((task) => task.status === status);
+
+    const filteredTasks = tasks.filter((task) => task.status === status && task.requesterEmail === userEmail);
+
+
+
+    const handleDeleteClick = (id) => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosPublic.delete(`/tasks/${id}`).then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Task has been deleted.",
+                icon: "success",
+              });
+            }
+            refetch();
+          });
+        }
+      });
+    };
+
+
+
 
     return (
       <div className="mb-8">
@@ -36,6 +72,7 @@ function PreviousTasks() {
                     <th className="py-2 px-4 border-b">Description</th>
                     <th className="py-2 px-4 border-b">Deadline</th>
                     <th className="py-2 px-4 border-b">Priority</th>
+                    <th className="py-2 px-4 border-b">Action</th>
                   </tr>
                 </thead>
                 <Droppable droppableId={status} type="TASK">
@@ -68,6 +105,16 @@ function PreviousTasks() {
                               </td>
                               <td className="py-2 px-4 border-b">
                                 {task.priority}
+                              </td>
+                              <td className="py-2 px-4 border-b">
+                                {/* {task.requesterEmail} */}
+                                <button
+                        className="bg-blue-300 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded"
+                        onClick={() => handleDeleteClick(task._id)}
+                      >
+                        {`Delete`}
+                      </button>
+
                               </td>
                             </tr>
                           )}

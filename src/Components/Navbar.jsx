@@ -20,6 +20,8 @@ const Navbar = () => {
     const normalNavLinks =
         <>
             <li><NavLink to={"/"}>Home</NavLink></li>
+            <li><NavLink to={"/aboutUs"}>About Us</NavLink></li>
+        <li><NavLink to={"/contactUs"}>Contact Us</NavLink></li>
             <li><NavLink to={"/login"}>Login</NavLink></li>
         <li><NavLink to={"/register"}>Register</NavLink></li>
            
@@ -50,7 +52,7 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <img className="w-36" src="https://i.ibb.co/dLm7Cf6/sarkari-blog-removebg-preview.png" alt="" />
+                    <img className="w-36" src="https://i.ibb.co/s9myT0z/task.png" alt="" />
 
 
                 </div>

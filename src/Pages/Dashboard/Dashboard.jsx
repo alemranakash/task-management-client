@@ -22,6 +22,9 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <div>
               <li>
+                <NavLink to="/dashboard/profile">Profile</NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/newTask">Create New Task</NavLink>
               </li>
               <li>
